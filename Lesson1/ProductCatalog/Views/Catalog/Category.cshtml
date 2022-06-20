@@ -1,0 +1,67 @@
+@model Category
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+@if (Model == null)
+{
+    <div>Такая категория не найдена.</div>
+} else
+{
+    @if (Model.Products.Count == 0)
+    {
+        <div>В этой категории пока нет продуктов.</div>
+    } else
+    {
+        <table border="1" width="100%">
+            <tr>
+                <td width="100">Код</td>
+                <td width="200">Изображение</td>
+                <td>Название</td>
+                <td width="100">Цена</td>
+            </tr>
+            @foreach (Product p in Model.Products)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(p.ImgUrl))
+                        {
+                            <p>X</p>
+                        } else
+                        {
+                            <img src="@p.ImgUrl" width="180">
+                        }
+                    </td>
+                    <td>@p.Name</td>
+                    <td>@p.Price</td>
+                </tr>
+            }
+        </table>
+    }
+
+    @if (ViewData["Error"] != null)
+    {
+        <br />
+        <br />
+        <div style="color: red;">@ViewData["Error"]</div>
+    }
+
+    <br />
+    <br />
+    <div>Добавление продуктов:</div>
+
+    <form method="post">
+        Код: <input type="text" name="id" required />
+        <br />
+        Ссыдка на изображение: <input type="text" name="ImgUrl" />
+        <br />
+        Название: <input type="text" name="name" required />
+        <br />
+        Цена: <input type="text" name="price" required />
+        <br />
+        <input type="submit" name="submit" value="Создать" />
+    </form>
+}
+
