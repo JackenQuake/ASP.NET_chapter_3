@@ -1,0 +1,46 @@
+@model Catalog
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+@if (Model.Categories.Count == 0)
+{
+    <div>Категорий пока нет.</div>
+} else
+{
+    <table border="1" width="100%">
+        <tr>
+            <td width="100">Код</td>
+            <td>Название</td>
+        </tr>
+        @foreach (Category c in Model.Categories)
+        {
+            <tr>
+                <td>@Html.ActionLink($"{c.Id}", "Products", "Catalog", new { categoryId = c.Id })</td>
+                <td>@Html.ActionLink($"{c.Name}", "Products", "Catalog", new { categoryId = c.Id })</td>
+            </tr>
+        }
+    </table>
+}
+
+@if (ViewData["Error"] != null)
+{
+    <br />
+    <br />
+    <div style="color: red;">@ViewData["Error"]</div>
+}
+
+<br />
+<br />
+<div>Добавление категорий:</div>
+<form method="post">
+    Код: <input type="text" name="id" required />
+    <br />
+    Название: <input type="text" name="name" required />
+    <br />
+    <input type="submit" name="submit" value="Создать" />
+</form>
+
+
+
