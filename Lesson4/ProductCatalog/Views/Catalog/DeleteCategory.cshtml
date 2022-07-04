@@ -1,0 +1,10 @@
+@model CatalogModel
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div style="color: red;">Категория удалена</div>
+<br />
+<br />
+@Html.ActionLink("Вернуться в каталог", "Categories", "Catalog", null)
