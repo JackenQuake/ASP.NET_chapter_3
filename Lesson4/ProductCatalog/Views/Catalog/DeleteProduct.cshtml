@@ -1,0 +1,15 @@
+@model CategoryViewData
+
+@{ ViewData["Title"] = "Products"; }
+
+<div style="color: red;">Продукт удален</div>
+<br />
+<br />
+
+@if (Model != null)
+{
+    @Html.ActionLink($"Вернуться в категорию {Model.Name}", "Products", "Catalog", new { categoryId = Model.Id });
+} else
+{
+    @Html.ActionLink("Вернуться в каталог", "Categories", "Catalog", null);
+}
