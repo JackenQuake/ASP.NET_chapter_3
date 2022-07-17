@@ -1,0 +1,16 @@
+@model CatalogModel
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+@if (ViewData["Error"] != null)
+{
+    <div style="color: red;">@ViewData["Error"]</div>
+} else {
+    <div style="color: red;">Категория удалена</div>
+}
+
+<br />
+<br />
+@Html.ActionLink("Вернуться в каталог", "Categories", "Catalog", null)
