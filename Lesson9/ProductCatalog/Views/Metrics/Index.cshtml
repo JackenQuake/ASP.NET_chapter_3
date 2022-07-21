@@ -1,0 +1,19 @@
+@model SiteMetrics.IMetricsStorage
+
+@{
+    ViewData["Title"] = "Site metrics";
+}
+
+<table border="1" width="100%">
+    <tr>
+        <td>ѕуть</td>
+        <td width="100">—четчик</td>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Path</td>
+            <td>@x.Counter</td>
+        </tr>
+    }
+</table>
